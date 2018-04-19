@@ -157,6 +157,13 @@ def get_passwords(username, password):
     return passwords, "0"
 
 
+def print_help():
+    print("""Available commands:
+    add_password - adds passwords to password database
+    get_password - gets you a password from database
+    !end - ends loop""")
+
+
 # This is main loop, it begins when user logs in
 def main_loop(current_username, current_user_password):
     print("Successfully logged in! Type !end to exit the program")
@@ -168,7 +175,7 @@ def main_loop(current_username, current_user_password):
             break
 
         # This command allows user to add new passwords to the database
-        elif main_cicle_command == "db_append":
+        elif main_cicle_command == "add_password":
             db_append(current_username,  current_user_password)
 
         # This command allows user to extract password. Asked password copies to the clipboard, so user can paste it.
@@ -191,12 +198,14 @@ def main_loop(current_username, current_user_password):
                 print("Password to this login was copied to the clipboard")
             except KeyError:
                 print("No such login")
+        elif main_cicle_command == "help":
+            print_help()
         else:
-            print("!!!Unknown command!!!")
+            print("!!!Unknown command. To see the manual type 'help'!!!")
 
 
 # Here the program begins, user need to log_in to continue
-print("Type 'log_in' to log in or 'register' to register new user")
+print("Type 'log_in' to log in or 'register' to register new user. To exit the program type !end")
 while 1:
     command = input("->")
     if command == "log_in":
@@ -205,10 +214,9 @@ while 1:
         password_to_login = login_reply[2]
         if login_reply[0]:
             main_loop(user_to_login, password_to_login)
-            exit(0)
         else:
             print("!!!Username or password is wrong!!!")
     elif command == "register":
         reg_user()
     elif command == "!end":
-        break
+        exit(0)
