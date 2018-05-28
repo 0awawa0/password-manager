@@ -219,4 +219,4 @@ while 1:
     elif command == "register":
         reg_user()
     elif command == "!end":
-        exit(0)
+        break
