@@ -6,5 +6,5 @@ setup(
     version="0.1",
     description="Save our secrets",
     executables=[Executable("main.py")],
-    options={"build_exe": {"include_msvcr": True, "init_script": "Console"}}
+    options={"build_exe": {"include_msvcr": True}}
 )
